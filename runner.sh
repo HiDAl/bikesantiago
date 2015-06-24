@@ -12,7 +12,7 @@ while [ true ]; do
         rm bd/$ts.json
     fi
 
-    lastCheck=$(md5sum bd/$ts.json);
+    lastCheck=$(openssl md5 bd/$ts.json | awk '{print $2}');
 
     sleep 3;
 done
