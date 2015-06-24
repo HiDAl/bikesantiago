@@ -47,5 +47,5 @@ agent.get( url ) { |page|
                 }
             }
 
-    puts coordinates.zip(tmp, status).collect { |t| t[0].merge( t[1] ) }.json
+    puts coordinates.zip(tmp, status).collect { |t| t[0].merge( t[1] ) }.to_json
 }
