@@ -3,12 +3,13 @@ require 'mechanize'
 require 'digest'
 require 'date'
 
-a = Mechanize.new { |agent|
+agent = Mechanize.new { |agent|
     agent.user_agent_alias = 'Mac Safari'
 }
 
 url = 'https://bikesantiago.bcycle.com/station-locations-new/'
-a.get( url ) { |page|
+agent.get( url ) { |page|
+    # puts page.header
     xpath = '//*[@id="T1E3C9100001_controlContentContainer"]/script'
 
     jstext = page.parser.xpath(xpath).to_s.strip
@@ -46,5 +47,5 @@ a.get( url ) { |page|
                 }
             }
 
-    puts coordinates.zip(tmp, status).collect { |t| t[0].merge( t[1] ) }.to_json
+    puts coordinates.zip(tmp, status).collect { |t| t[0].merge( t[1] ) }.json
 }
